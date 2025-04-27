@@ -1,8 +1,8 @@
 === WPProbe Debugging Add-On ===
-Contributors: tlovett1, 10up
+Contributors: bushwackstudio
 Tags: debug, debug bar, wpprobe, elasticsearch
 Requires at least: 4.6
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.0
 Stable tag: 0.1.0
 License: GPLv2

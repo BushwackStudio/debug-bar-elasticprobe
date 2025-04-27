@@ -3,12 +3,12 @@
  * Plugin Name:       WPProbe Debugging Add-On
  * Plugin URI:        https://wordpress.org/plugins/debug-bar-wpprobe
  * Description:       Extends the Query Monitor and Debug Bar plugins for WPProbe queries.
- * Version:           3.1.1
+ * Version:           0.1.0
  * Requires Plugins:  wpprobe
- * Requires at least: 5.6
+ * Requires at least: 6.0
  * Requires PHP:      7.0
- * Author:            10up
- * Author URI:        https://10up.com
+ * Author:            BushwackStudio
+ * Author URI:        https://github.com/orgs/BushwackStudio
  * License:           GPLv2
  * License URI:       https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain:       debug-bar-wpprobe
@@ -21,7 +21,7 @@ namespace DebugBarWPProbe;
 
 define( 'EP_DEBUG_VERSION', '3.1.1' );
 define( 'EP_DEBUG_URL', plugin_dir_url( __FILE__ ) );
-define( 'EP_DEBUG_MIN_EP_VERSION', '4.4.0' );
+define( 'EP_DEBUG_MIN_EP_VERSION', '0.1.0' );
 
 spl_autoload_register(
 	function ( $class_name ) {
@@ -125,7 +125,7 @@ function add_debug_bar_stati( $stati ) {
 	) {
 		$elasticsearch_version = \WPProbe\Elasticsearch::factory()->get_elasticsearch_version();
 	}
-	if ( function_exists( '\WPProbe\Utils\is_epio' ) && \ElasticPress\Utils\is_epio() ) {
+	if ( function_exists( '\WPProbe\Utils\is_epio' ) && \WPProbe\Utils\is_epio() ) {
 		$elasticsearch_version = esc_html__( 'WPProbe.com Managed Platform', 'debug-bar-wpprobe' );
 	}
 	$stati[] = array(

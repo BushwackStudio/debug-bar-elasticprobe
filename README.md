@@ -1,24 +1,24 @@
-# ElasticPress Debugging Add-On
+# WPProbe Debugging Add-On
 
-> Adds an [ElasticPress](https://wordpress.org/plugins/elasticpress) panel to [Debug Bar](https://wordpress.org/plugins/debug-bar/) and/or [Query Monitor](https://wordpress.org/plugins/query-monitor/) plugins. Allows you to examine every ElasticPress query running on any given request.
+> Adds an [WPProbe](https://wordpress.org/plugins/wpprobe) panel to [Debug Bar](https://wordpress.org/plugins/debug-bar/) and/or [Query Monitor](https://wordpress.org/plugins/query-monitor/) plugins. Allows you to examine every WPProbe query running on any given request.
 
-[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Release Version](https://img.shields.io/github/tag/10up/debug-bar-elasticpress.svg?label=release)](https://github.com/10up/debug-bar-elasticpress/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/debug-bar-elasticpress?label=WordPress) [![GPLv2 License](https://img.shields.io/github/license/10up/debug-bar-elasticpress.svg)](https://github.com/10up/debug-bar-elasticpress/blob/trunk/LICENSE.md)
+[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Release Version](https://img.shields.io/github/tag/10up/debug-bar-wpprobe.svg?label=release)](https://github.com/BushwackStudio/debug-bar-wpprobe/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/debug-bar-wpprobe?label=WordPress) [![GPLv2 License](https://img.shields.io/github/license/10up/debug-bar-wpprobe.svg)](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/trunk/LICENSE.md)
 
 ## Requirements
 
-* [ElasticPress](https://wordpress.org/plugins/elasticpress/) 4.4.0+
+* [WPProbe](https://wordpress.org/plugins/wpprobe/) 4.4.0+
 * PHP 7.0+
 * Optional: [Debug Bar](https://wordpress.org/plugins/debug-bar/) 1.0+ or [Query Monitor](https://wordpress.org/plugins/query-monitor/)
 
 ## Usage
 
-After installing and activating, click the `Debug` button or the Query Monitor Stats in the admin toolbar. Within Debug Bar/Query Monitor, click the ElasticPress panel.
+After installing and activating, click the `Debug` button or the Query Monitor Stats in the admin toolbar. Within Debug Bar/Query Monitor, click the WPProbe panel.
 
-Alternatively, go to ElasticPress > Query Log and set it to record ElasticPress queries.
+Alternatively, go to WPProbe > Query Log and set it to record WPProbe queries.
 
 ## Issues
 
-If you identify any errors or have an idea for improving the plugin, please [open an issue](https://github.com/10up/debug-bar-elasticpress/issues?state=open).
+If you identify any errors or have an idea for improving the plugin, please [open an issue](https://github.com/BushwackStudio/debug-bar-wpprobe/issues?state=open).
 
 ## Support Level
 
@@ -26,12 +26,9 @@ If you identify any errors or have an idea for improving the plugin, please [ope
 
 ## Changelog
 
-A complete listing of all notable changes to Debug Bar ElasticPress are documented in [CHANGELOG.md](https://github.com/10up/debug-bar-elasticpress/blob/develop/CHANGELOG.md).
+A complete listing of all notable changes to Debug Bar WPProbe are documented in [CHANGELOG.md](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/dev/CHANGELOG.md).
 
 ## Contributing
 
-Please read [CODE_OF_CONDUCT.md](https://github.com/10up/debug-bar-elasticpress/blob/develop/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/10up/debug-bar-elasticpress/blob/develop/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/10up/debug-bar-elasticpress/blob/develop/CREDITS.md) for a listing of maintainers of, contributors to, and libraries used by Debug Bar ElasticPress.
+Please read [CODE_OF_CONDUCT.md](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/dev/CODE_OF_CONDUCT.md) for details on our code of conduct, [CONTRIBUTING.md](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/dev/CONTRIBUTING.md) for details on the process for submitting pull requests to us, and [CREDITS.md](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/dev/CREDITS.md) for a listing of maintainers of, contributors to, and libraries used by Debug Bar WPProbe.
 
-## Like what you see?
-
-<a href="http://10up.com/contact/"><img src="https://10up.com/uploads/2016/10/10up-Github-Banner.png" width="850" alt="Work with us at 10up"></a>

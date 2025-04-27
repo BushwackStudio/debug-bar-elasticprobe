@@ -259,7 +259,7 @@ class QueryLog {
 								<br>
 								<span class="description">
 									<?php
-									echo wp_kses_post( __( 'Note that query logging can have <strong>severe</strong> performance implications on your website.', 'debug-bar-elasticpress' ) );
+									echo wp_kses_post( __( 'Note that query logging can have <strong>severe</strong> performance implications on your website.', 'debug-bar-wpprobe' ) );
 									if ( $is_time_limit ) {
 										echo ' ' . wp_kses_post(
 											sprintf(
