@@ -2,7 +2,7 @@
 
 > Adds an [WPProbe](https://wordpress.org/plugins/wpprobe) panel to [Debug Bar](https://wordpress.org/plugins/debug-bar/) and/or [Query Monitor](https://wordpress.org/plugins/query-monitor/) plugins. Allows you to examine every WPProbe query running on any given request.
 
-[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Release Version](https://img.shields.io/github/tag/10up/debug-bar-wpprobe.svg?label=release)](https://github.com/BushwackStudio/debug-bar-wpprobe/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/debug-bar-wpprobe?label=WordPress) [![GPLv2 License](https://img.shields.io/github/license/10up/debug-bar-wpprobe.svg)](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/trunk/LICENSE.md)
+[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level) [![Release Version](https://img.shields.io/github/tag/BushwackStudio/debug-bar-wpprobe.svg?label=release)](https://github.com/BushwackStudio/debug-bar-wpprobe/releases/latest) ![WordPress tested up to version](https://img.shields.io/wordpress/plugin/tested/debug-bar-wpprobe?label=WordPress) [![GPLv2 License](https://img.shields.io/github/license/BushwackStudio/debug-bar-wpprobe.svg)](https://github.com/BushwackStudio/debug-bar-wpprobe/blob/trunk/LICENSE.md)
 
 ## Requirements
 
