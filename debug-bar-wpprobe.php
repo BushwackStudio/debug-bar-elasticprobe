@@ -6,7 +6,7 @@
  * Version:           0.1.0
  * Requires Plugins:  wpprobe
  * Requires at least: 6.0
- * Requires PHP:      7.0
+ * Requires PHP:      7.4
  * Author:            BushwackStudio
  * Author URI:        https://github.com/orgs/BushwackStudio
  * License:           GPLv2
@@ -23,7 +23,7 @@
 
 namespace DebugBarWPProbe;
 
-define( 'EP_DEBUG_VERSION', '3.1.1' );
+define( 'EP_DEBUG_VERSION', '0.1.0' );
 define( 'EP_DEBUG_URL', plugin_dir_url( __FILE__ ) );
 define( 'EP_DEBUG_MIN_EP_VERSION', '0.1.0' );
 
