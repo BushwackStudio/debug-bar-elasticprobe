@@ -3,10 +3,10 @@
  * QueryMonitorCollector class file.
  *
  * @since 3.1.0
- * @package DebugBarElasticPress
+ * @package DebugBarWPProbe
  */
 
-namespace DebugBarElasticPress;
+namespace DebugBarWPProbe;
 
 defined( 'ABSPATH' ) || exit;
 

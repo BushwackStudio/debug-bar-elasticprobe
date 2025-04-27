@@ -4,12 +4,12 @@
  *
  * phpcs:disable WordPress.PHP.DevelopmentFunctions
  *
- * @package DebugBarElasticPress
+ * @package DebugBarWPProbe
  */
 
-namespace DebugBarElasticPress;
+namespace DebugBarWPProbe;
 
-use ElasticPress\Utils;
+use WPProbe\Utils;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -121,9 +121,9 @@ class QueryLog {
 	 */
 	public function action_admin_menu() {
 		add_submenu_page(
-			'elasticpress',
-			esc_html__( 'Query Log', 'debug-bar-elasticpress' ),
-			esc_html__( 'Query Log', 'debug-bar-elasticpress' ),
+			'wpprobe',
+			esc_html__( 'Query Log', 'debug-bar-wpprobe' ),
+			esc_html__( 'Query Log', 'debug-bar-wpprobe' ),
 			'manage_options',
 			'ep-query-log',
 			array( $this, 'screen_options' )
@@ -236,7 +236,7 @@ class QueryLog {
 		?>
 
 		<div class="wrap">
-			<h2><?php esc_html_e( 'ElasticPress Query Log', 'debug-bar-elasticpress' ); ?></h2>
+			<h2><?php esc_html_e( 'WPProbe Query Log', 'debug-bar-wpprobe' ); ?></h2>
 
 			<form action="<?php echo esc_url( $action ); ?>" method="post">
 				<?php settings_fields( 'ep-debug' ); ?>
@@ -247,24 +247,24 @@ class QueryLog {
 						<tr>
 							<th scope="row">
 								<label for="ep_enable_logging">
-									<?php esc_html_e( 'Enable or disable query logging:', 'debug-bar-elasticpress' ); ?>
+									<?php esc_html_e( 'Enable or disable query logging:', 'debug-bar-wpprobe' ); ?>
 								</label>
 							</th>
 							<td>
 								<select name="ep_enable_logging" id="ep_enable_logging">
-									<option value="0"><?php esc_html_e( 'Disable', 'debug-bar-elasticpress' ); ?></option>
-									<option <?php selected( $is_time_limit ); ?> value="time_limit"><?php esc_html_e( 'Enable for 5 minutes', 'debug-bar-elasticpress' ); ?></option>
-									<option <?php selected( '-1', $enabled ); ?> value="-1"><?php esc_html_e( 'Keep enabled', 'debug-bar-elasticpress' ); ?></option>
+									<option value="0"><?php esc_html_e( 'Disable', 'debug-bar-wpprobe' ); ?></option>
+									<option <?php selected( $is_time_limit ); ?> value="time_limit"><?php esc_html_e( 'Enable for 5 minutes', 'debug-bar-wpprobe' ); ?></option>
+									<option <?php selected( '-1', $enabled ); ?> value="-1"><?php esc_html_e( 'Keep enabled', 'debug-bar-wpprobe' ); ?></option>
 								</select>
 								<br>
 								<span class="description">
 									<?php
-									echo wp_kses_post( __( 'Note that query logging can have <strong>severe</strong> performance implications on your website.', 'debug-bar-elasticpress' ) );
+									echo wp_kses_post( __( 'Note that query logging can have <strong>severe</strong> performance implications on your website.', 'debug-bar-wpprobe' ) );
 									if ( $is_time_limit ) {
 										echo ' ' . wp_kses_post(
 											sprintf(
 												/* translators: date */
-												__( 'Logging queries until <strong>%s</strong>.', 'debug-bar-elasticpress' ),
+												__( 'Logging queries until <strong>%s</strong>.', 'debug-bar-wpprobe' ),
 												wp_date( 'Y-m-d H:i:s', $enabled )
 											)
 										);
@@ -274,32 +274,32 @@ class QueryLog {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="ep_query_log_by_status"><?php esc_html_e( 'Log by status:', 'debug-bar-elasticpress' ); ?></label></th>
+							<th scope="row"><label for="ep_query_log_by_status"><?php esc_html_e( 'Log by status:', 'debug-bar-wpprobe' ); ?></label></th>
 							<td>
 								<select name="ep_query_log_by_status" id="ep_query_log_by_status">
-									<option <?php selected( 'failed', $by_status ); ?> value="failed"><?php esc_html_e( 'Only failed queries', 'debug-bar-elasticpress' ); ?></option>
-									<option <?php selected( 'all', $by_status ); ?> value="all"><?php esc_html_e( 'All queries', 'debug-bar-elasticpress' ); ?></option>
+									<option <?php selected( 'failed', $by_status ); ?> value="failed"><?php esc_html_e( 'Only failed queries', 'debug-bar-wpprobe' ); ?></option>
+									<option <?php selected( 'all', $by_status ); ?> value="all"><?php esc_html_e( 'All queries', 'debug-bar-wpprobe' ); ?></option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Log by context:', 'debug-bar-elasticpress' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Log by context:', 'debug-bar-wpprobe' ); ?></th>
 							<td>
 								<label>
 									<input type="checkbox" name="ep_query_log_by_context[]" value="public" <?php checked( empty( $by_context ) || in_array( 'public', $by_context, true ) ); ?>>
-									<?php esc_html_e( 'Public', 'debug-bar-elasticpress' ); ?>
+									<?php esc_html_e( 'Public', 'debug-bar-wpprobe' ); ?>
 								</label><br>
 								<label>
 									<input type="checkbox" name="ep_query_log_by_context[]" value="admin" <?php checked( empty( $by_context ) || in_array( 'admin', $by_context, true ) ); ?>>
-									<?php esc_html_e( 'Admin', 'debug-bar-elasticpress' ); ?>
+									<?php esc_html_e( 'Admin', 'debug-bar-wpprobe' ); ?>
 								</label><br>
 								<label>
 									<input type="checkbox" name="ep_query_log_by_context[]" value="ajax" <?php checked( empty( $by_context ) || in_array( 'ajax', $by_context, true ) ); ?>>
-									<?php esc_html_e( 'AJAX', 'debug-bar-elasticpress' ); ?>
+									<?php esc_html_e( 'AJAX', 'debug-bar-wpprobe' ); ?>
 								</label><br>
 								<label>
 									<input type="checkbox" name="ep_query_log_by_context[]" value="rest" <?php checked( empty( $by_context ) || in_array( 'rest', $by_context, true ) ); ?>>
-									<?php esc_html_e( 'REST API', 'debug-bar-elasticpress' ); ?>
+									<?php esc_html_e( 'REST API', 'debug-bar-wpprobe' ); ?>
 								</label>
 							</td>
 						</tr>
@@ -311,7 +311,7 @@ class QueryLog {
 					echo wp_kses_post(
 						sprintf(
 							/* translators: Current limit */
-							__( 'Please note that logs are stored until the storage limit is reached. The current limit is: <strong>%s</strong>', 'debug-bar-elasticpress' ),
+							__( 'Please note that logs are stored until the storage limit is reached. The current limit is: <strong>%s</strong>', 'debug-bar-wpprobe' ),
 							size_format( $this->get_logging_storage_limit() )
 						)
 					);
@@ -319,10 +319,10 @@ class QueryLog {
 				</p>
 
 				<p class="submit">
-					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'debug-bar-elasticpress' ); ?>">
+					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'debug-bar-wpprobe' ); ?>">
 
 					<?php if ( ! empty( $log ) ) : ?>
-						<a class="button" href="<?php echo esc_url( add_query_arg( array( 'ep_clear_query_log' => wp_create_nonce( 'ep_clear_query_log' ) ) ) ); ?>"><?php esc_html_e( 'Empty Log', 'debug-bar-elasticpress' ); ?></a>
+						<a class="button" href="<?php echo esc_url( add_query_arg( array( 'ep_clear_query_log' => wp_create_nonce( 'ep_clear_query_log' ) ) ) ); ?>"><?php esc_html_e( 'Empty Log', 'debug-bar-wpprobe' ); ?></a>
 					<?php endif; ?>
 				</p>
 			</form>
@@ -401,12 +401,12 @@ class QueryLog {
 			$args['ep_query_type'] = $type;
 
 			if ( 'get' === $type ) {
-				$args['ep_query_type'] = esc_html__( 'Raw ES document', 'debug-bar-elasticpress' );
+				$args['ep_query_type'] = esc_html__( 'Raw ES document', 'debug-bar-wpprobe' );
 			}
 		}
 
 		if ( '_nodes/plugins' === $path ) {
-			$args['ep_query_type'] = esc_html__( 'Elasticsearch check', 'debug-bar-elasticpress' );
+			$args['ep_query_type'] = esc_html__( 'Elasticsearch check', 'debug-bar-wpprobe' );
 		}
 
 		return $args;
@@ -496,21 +496,21 @@ class QueryLog {
 	 */
 	protected function determine_request_query_type( array $request_args, string $path, string $index, string $type, array $query, array $query_args, $query_object ): string {
 		if ( $query_object instanceof \WP_Query && $query_object->is_main_query() ) {
-			return esc_html__( 'Main query', 'debug-bar-elasticpress' );
+			return esc_html__( 'Main query', 'debug-bar-wpprobe' );
 		}
 
 		if ( empty( $query['query'] ) && ! empty( $query['aggs'] ) ) {
-			return esc_html__( 'Possible values for EP filter', 'debug-bar-elasticpress' );
+			return esc_html__( 'Possible values for EP filter', 'debug-bar-wpprobe' );
 		}
 
 		$search_term = $query_args['s'] ?? '';
 		if ( '' !== $search_term ) {
 			$type = 'Search';
 			if ( apply_filters( 'ep_autosuggest_query_placeholder', 'ep_autosuggest_placeholder' ) === $search_term ) {
-				return esc_html__( 'Autosuggest template', 'debug-bar-elasticpress' );
+				return esc_html__( 'Autosuggest template', 'debug-bar-wpprobe' );
 			}
 
-			return esc_html__( 'Search', 'debug-bar-elasticpress' );
+			return esc_html__( 'Search', 'debug-bar-wpprobe' );
 		}
 
 		return $type;

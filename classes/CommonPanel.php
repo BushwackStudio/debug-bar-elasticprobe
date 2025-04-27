@@ -3,10 +3,10 @@
  * CommonPanel class file.
  *
  * @since 3.1.0
- * @package DebugBarElasticPress
+ * @package DebugBarWPProbe
  */
 
-namespace DebugBarElasticPress;
+namespace DebugBarWPProbe;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -20,17 +20,17 @@ class CommonPanel {
 	 * @return string
 	 */
 	public function get_title(): string {
-		$queries_count = count( \ElasticPress\Elasticsearch::factory()->get_query_log() );
+		$queries_count = count( \WPProbe\Elasticsearch::factory()->get_query_log() );
 
 		if ( $queries_count ) {
 			return sprintf(
 				/* translators: %d: number of queries */
-				esc_html__( 'ElasticPress (%d)', 'debug-bar-elasticpress' ),
+				esc_html__( 'WPProbe (%d)', 'debug-bar-wpprobe' ),
 				$queries_count
 			);
 		}
 
-		return esc_html__( 'ElasticPress', 'debug-bar-elasticpress' );
+		return esc_html__( 'WPProbe', 'debug-bar-wpprobe' );
 	}
 
 	/**
@@ -49,17 +49,17 @@ class CommonPanel {
 	 * Show the contents of the panel
 	 */
 	public function render() {
-		$queries = \ElasticPress\Elasticsearch::factory()->get_query_log();
+		$queries = \WPProbe\Elasticsearch::factory()->get_query_log();
 
-		if ( function_exists( '\ElasticPress\Utils\is_indexing' ) && \ElasticPress\Utils\is_indexing() ) {
+		if ( function_exists( '\WPProbe\Utils\is_indexing' ) && \WPProbe\Utils\is_indexing() ) {
 			?>
 			<div class="ep-debug-bar-warning">
-				<?php esc_html_e( 'ElasticPress is currently indexing.', 'debug-bar-elasticpress' ); ?>
+				<?php esc_html_e( 'WPProbe is currently indexing.', 'debug-bar-wpprobe' ); ?>
 			</div>
 			<?php
 		}
 
-		$debug_bar_output = new \DebugBarElasticPress\QueryOutput( $queries );
+		$debug_bar_output = new \DebugBarWPProbe\QueryOutput( $queries );
 		$debug_bar_output->render_buttons();
 		$debug_bar_output->render_additional_buttons();
 		$debug_bar_output->render_queries();

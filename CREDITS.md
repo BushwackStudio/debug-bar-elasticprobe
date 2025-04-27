@@ -6,32 +6,14 @@ The following acknowledges the Maintainers for this repository, those who have C
 
 The following individuals are responsible for curating the list of issues, responding to pull requests, and ensuring regular releases happen.
 
-[Thorsten Ott (@tott)](https://github.com/tott) and [Felipe Elia (@felipeelia)](https://github.com/felipeelia).
+[Nima Shayanfar (@nshayanfar)](https://github.com/nshayanfar).
 
 ## Contributors
 
-Thank you to all the people who have already contributed to this repository via bug reports, code, design, ideas, project management, translation, testing, etc.
+Thank you to all the people who have already contributed to this repository via bug reports, code, design, ideas, project management, translation, testing, etc. This plugin derives from 10UP's debug-bar-elasticpress. Bushwack is thankful for all of 10UP and their contributers' work.
 
-[Taylor Lovett (@tlovett1)](https://github.com/tlovett1),
-[Ivan Kristianto (@ivankristianto)](https://github.com/ivankristianto),
-[Allan Collins (@allan23)](https://github.com/allan23),
-[Eugene Manuilov (@eugene-manuilov)](https://github.com/eugene-manuilov),
-[Ricardo Moraleida (@moraleida)](https://github.com/moraleida),
-[Andreas Ek (@ekandreas)](https://github.com/ekandreas),
-[Nathaniel (@nathanielks)](https://github.com/nathanielks),
-[Jeffrey Paul (@jeffpaul)](https://github.com/jeffpaul),
-[Felipe Elia (@felipeelia)](https://github.com/felipeelia),
-[Ramon Ahnert (@Rahmon)](https://github.com/Rahmon),
-[Oscar Sanchez S. (@oscarssanchez)](https://github.com/oscarssanchez),
-[Nathaniel (@nathanielks)](https://github.com/nathanielks),
-[Piotr Bajer (@piotr-bajer)](https://github.com/piotr-bajer),
-[Mohammed Razzaq (@MARQAS)](https://github.com/MARQAS),
-[Burhan Nasir (@burhandodhy)](https://github.com/burhandodhy),
-[Nathaniel Taintor (@goldenapples)](https://github.com/goldenapples),
-[Matt Gross (@mattonomics)](https://github.com/mattonomics),
-[Artem Russakovskii (@archon810)](https://github.com/archon810),
-and
-[Christoph Bratschi (@cbratschi)](https://github.com/cbratschi).
+[Nima Shayanfar (@nshayanfar)](https://github.com/nshayanfar).
+
 
 ## Libraries
 

@@ -3,11 +3,11 @@ name: Linting
 on:
   push:
     branches:
-      - develop
+      - dev
       - trunk
   pull_request:
     branches:
-      - develop
+      - dev
 
 jobs:
   lint_js_css:
