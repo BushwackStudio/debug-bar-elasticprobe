@@ -17,4 +17,4 @@ All notable changes to this project will be documented in this file, per [the Ke
 * Initial release
 
 [Unreleased]: https://github.com/BushwackStudio/WpProbe/compare/trunk...dev
-[0.1.0]: https://github.com/BushwackStudio/WpProbe/tree/55102f1b
+[0.1.0]: https://github.com/BushwackStudio/debug-bar-wpprobe/tree/0.1.0
