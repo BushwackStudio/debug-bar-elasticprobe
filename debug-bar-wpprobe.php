@@ -13,9 +13,9 @@
  * License URI:       https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain:       debug-bar-wpprobe
  * Domain Path:       /lang
- * 
+ *
  * This program derives work from 10up's ElasticPress Debugging Add-On.
- * 
+ *
  * Copyright (C) 2025 10up
  *
  * @package DebugBarWPProbe
