@@ -6,10 +6,10 @@
  *
  * phpcs:disable WordPress.PHP.DevelopmentFunctions
  *
- * @package DebugBarElasticPress
+ * @package DebugBarWPProbe
  */
 
-namespace DebugBarElasticPress;
+namespace DebugBarWPProbe;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -49,14 +49,14 @@ class QueryOutput {
 		$copy_paste_output = $this->get_copy_paste_report();
 		?>
 		<div class="ep-queries-buttons-wrapper">
-			<a download="debug-bar-elasticpress-report.txt" href="data:text/plain;charset=utf-8,<?php echo rawurlencode( $copy_paste_output ); ?>"  class="button button-primary" id="ep-download-requests-info">
-				<?php esc_html_e( 'Download Requests Info', 'debug-bar-elasticpress' ); ?>
+			<a download="debug-bar-wpprobe-report.txt" href="data:text/plain;charset=utf-8,<?php echo rawurlencode( $copy_paste_output ); ?>"  class="button button-primary" id="ep-download-requests-info">
+				<?php esc_html_e( 'Download Requests Info', 'debug-bar-wpprobe' ); ?>
 			</a>
 			<button class="ep-copy-button button bordered-button" data-clipboard-text="<?php echo esc_attr( $copy_paste_output ); ?>">
-				<?php esc_html_e( 'Copy Requests Info to Clipboard', 'debug-bar-elasticpress' ); ?>
+				<?php esc_html_e( 'Copy Requests Info to Clipboard', 'debug-bar-wpprobe' ); ?>
 			</button>
 			<span class="ep-copy-button-wrapper__success" style="display: none;">
-				<?php esc_html_e( 'Copied!', 'debug-bar-elasticpress' ); ?>
+				<?php esc_html_e( 'Copied!', 'debug-bar-wpprobe' ); ?>
 			</span>
 		</div>
 		<?php
@@ -76,7 +76,7 @@ class QueryOutput {
 				<?php
 				if ( empty( $this->queries ) ) {
 					?>
-					<li><?php esc_html_e( 'No queries to show', 'debug-bar-elasticpress' ); ?></li>
+					<li><?php esc_html_e( 'No queries to show', 'debug-bar-wpprobe' ); ?></li>
 					<?php
 				} else {
 					foreach ( $this->queries as $query ) {
@@ -109,10 +109,10 @@ class QueryOutput {
 		$class         = $response < 200 || $response >= 300 ? 'ep-query-failed' : '';
 		$log['result'] = json_decode( $result, true );
 
-		if ( class_exists( '\ElasticPress\StatusReport\FailedQueries' ) && class_exists( 'ElasticPress\QueryLogger' ) ) {
-			$query_logger = apply_filters( 'ep_query_logger', new \ElasticPress\QueryLogger() );
+		if ( class_exists( '\WPProbe\StatusReport\FailedQueries' ) && class_exists( 'WPProbe\QueryLogger' ) ) {
+			$query_logger = apply_filters( 'ep_query_logger', new \WPProbe\QueryLogger() );
 			if ( $query_logger ) {
-				$failed_queries = new \ElasticPress\StatusReport\FailedQueries( $query_logger );
+				$failed_queries = new \WPProbe\StatusReport\FailedQueries( $query_logger );
 				$error          = $failed_queries->analyze_log( $log );
 				$error          = array_filter( $error );
 			}
@@ -140,43 +140,43 @@ class QueryOutput {
 					<div class="ep-query-error-code ep-query-response-code">
 						<?php
 						echo wp_kses_post(
-							/* translators: Debug bar elasticpress error message */
-							sprintf( __( '<strong>Error:</strong> %s', 'debug-bar-elasticpress' ), $error[0] )
+							/* translators: Debug bar wpprobe error message */
+							sprintf( __( '<strong>Error:</strong> %s', 'debug-bar-wpprobe' ), $error[0] )
 						);
 						?>
 					</div>
 					<div class="ep-query-error-code ep-query-response-code">
 						<?php
 						echo wp_kses_post(
-							/* translators: Debug bar elasticpress recommended solution for the error */
-							sprintf( __( '<strong>Recommended Solution:</strong> %s', 'debug-bar-elasticpress' ), $error[1] )
+							/* translators: Debug bar wpprobe recommended solution for the error */
+							sprintf( __( '<strong>Recommended Solution:</strong> %s', 'debug-bar-wpprobe' ), $error[1] )
 						);
 						?>
 					</div>
 				<?php endif; ?>
 			<?php else : ?>
 				<div class="ep-query-errors">
-					<strong><?php esc_html_e( 'Errors:', 'debug-bar-elasticpress' ); ?> <div class="query-errors-toggle dashicons"></div></strong>
+					<strong><?php esc_html_e( 'Errors:', 'debug-bar-wpprobe' ); ?> <div class="query-errors-toggle dashicons"></div></strong>
 					<pre class="query-errors"><?php echo esc_html( wp_json_encode( $query['request']->errors, JSON_PRETTY_PRINT ) ); ?></pre>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $type ) : ?>
 				<div class="ep-query-type">
-					<strong><?php esc_html_e( 'Type:', 'debug-bar-elasticpress' ); ?></strong>
+					<strong><?php esc_html_e( 'Type:', 'debug-bar-wpprobe' ); ?></strong>
 					<?php echo esc_html( $type ); ?>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $context ) : ?>
 				<div class="ep-query-context">
-					<strong><?php esc_html_e( 'Context:', 'debug-bar-elasticpress' ); ?></strong>
+					<strong><?php esc_html_e( 'Context:', 'debug-bar-wpprobe' ); ?></strong>
 					<?php echo esc_html( $context ); ?>
 				</div>
 			<?php endif; ?>
 
 			<div class="ep-query-host">
-				<strong><?php esc_html_e( 'Host:', 'debug-bar-elasticpress' ); ?></strong>
+				<strong><?php esc_html_e( 'Host:', 'debug-bar-wpprobe' ); ?></strong>
 				<?php echo esc_html( $query['host'] ); ?>
 			</div>
 
@@ -185,43 +185,43 @@ class QueryOutput {
 			if ( ! empty( $query_time ) ) :
 				echo wp_kses_post(
 					/* translators: time spent running the query. */
-					sprintf( __( '<strong>Time Taken:</strong> %d ms', 'debug-bar-elasticpress' ), ( $query_time * 1000 ) )
+					sprintf( __( '<strong>Time Taken:</strong> %d ms', 'debug-bar-wpprobe' ), ( $query_time * 1000 ) )
 				);
 			else :
 				echo wp_kses_post(
-					__( '<strong>Time Taken:</strong> -', 'debug-bar-elasticpress' )
+					__( '<strong>Time Taken:</strong> -', 'debug-bar-wpprobe' )
 				);
 			endif;
 			?>
 			</div>
 
 			<div class="ep-query-url">
-				<strong><?php esc_html_e( 'URL:', 'debug-bar-elasticpress' ); ?></strong>
+				<strong><?php esc_html_e( 'URL:', 'debug-bar-wpprobe' ); ?></strong>
 				<?php echo esc_url( $query['url'] ); ?>
 			</div>
 
 			<div class="ep-query-method">
-				<strong><?php esc_html_e( 'Method:', 'debug-bar-elasticpress' ); ?></strong>
+				<strong><?php esc_html_e( 'Method:', 'debug-bar-wpprobe' ); ?></strong>
 				<?php echo esc_html( $query['args']['method'] ); ?>
 			</div>
 
 			<?php if ( ! empty( $query['args']['headers'] ) ) : ?>
 				<div class="ep-query-headers">
-					<strong><?php esc_html_e( 'Headers:', 'debug-bar-elasticpress' ); ?> <div class="query-headers-toggle dashicons"></div></strong>
+					<strong><?php esc_html_e( 'Headers:', 'debug-bar-wpprobe' ); ?> <div class="query-headers-toggle dashicons"></div></strong>
 					<pre class="query-headers"><?php echo esc_html( var_export( $query['args']['headers'], true ) ); ?></pre>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $query['query_args'] ) ) : ?>
 				<div class="ep-query-args">
-					<strong><?php esc_html_e( 'Query Args:', 'debug-bar-elasticpress' ); ?> <div class="query-args-toggle dashicons"></div></strong>
+					<strong><?php esc_html_e( 'Query Args:', 'debug-bar-wpprobe' ); ?> <div class="query-args-toggle dashicons"></div></strong>
 					<pre class="query-args"><?php echo esc_html( var_export( $query['query_args'], true ) ); ?></pre>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $query['args']['body'] ) ) : ?>
 				<div class="ep-query-body">
-					<strong><?php esc_html_e( 'Query Body:', 'debug-bar-elasticpress' ); ?> <div class="query-body-toggle dashicons"></div></strong>
+					<strong><?php esc_html_e( 'Query Body:', 'debug-bar-wpprobe' ); ?> <div class="query-body-toggle dashicons"></div></strong>
 					<?php
 					// Bulk indexes are not "valid" JSON, for example.
 					$body = json_decode( $query['args']['body'], true );
@@ -240,24 +240,24 @@ class QueryOutput {
 					<?php
 					echo wp_kses_post(
 						/* translators: Query HTTP Code response */
-						sprintf( __( '<strong>Query Response Code:</strong> HTTP %d', 'debug-bar-elasticpress' ), (int) $response )
+						sprintf( __( '<strong>Query Response Code:</strong> HTTP %d', 'debug-bar-wpprobe' ), (int) $response )
 					);
 					?>
 				</div>
 				<div class="ep-query-result">
-					<strong><?php esc_html_e( 'Query Result:', 'debug-bar-elasticpress' ); ?> <div class="query-result-toggle dashicons"></div></strong>
+					<strong><?php esc_html_e( 'Query Result:', 'debug-bar-wpprobe' ); ?> <div class="query-result-toggle dashicons"></div></strong>
 					<pre class="query-results"><?php echo esc_html( wp_json_encode( json_decode( $result, true ), JSON_PRETTY_PRINT ) ); ?></pre>
 				</div>
 			<?php else : ?>
 				<div class="ep-query-response-code">
-					<strong><?php esc_html_e( 'Query Response Code:', 'debug-bar-elasticpress' ); ?></strong> <?php esc_html_e( 'Request Error', 'debug-bar-elasticpress' ); ?>
+					<strong><?php esc_html_e( 'Query Response Code:', 'debug-bar-wpprobe' ); ?></strong> <?php esc_html_e( 'Request Error', 'debug-bar-wpprobe' ); ?>
 				</div>
 			<?php endif; ?>
 			<a class="copy-curl ep-copy-button" data-clipboard-text="<?php echo esc_attr( addcslashes( $curl_request, '"' ) ); ?>">
-				<?php esc_html_e( 'Copy cURL Request', 'debug-bar-elasticpress' ); ?>
+				<?php esc_html_e( 'Copy cURL Request', 'debug-bar-wpprobe' ); ?>
 			</a>
 			<span class="ep-copy-button-wrapper__success" style="display: none;">
-				<?php esc_html_e( 'Copied!', 'debug-bar-elasticpress' ); ?>
+				<?php esc_html_e( 'Copied!', 'debug-bar-wpprobe' ); ?>
 			</span>
 		</li>
 		<?php
@@ -272,10 +272,10 @@ class QueryOutput {
 	protected function get_copy_paste_report(): string {
 		$output = sprintf(
 			"## %s ##\n\n",
-			__( 'Queries info', 'debug-bar-elasticpress' )
+			__( 'Queries info', 'debug-bar-wpprobe' )
 		);
 
-		$query_formatter   = new \DebugBarElasticPress\QueryFormatter();
+		$query_formatter   = new \DebugBarWPProbe\QueryFormatter();
 		$formatted_queries = $query_formatter->format_queries_for_display( $this->queries );
 
 		foreach ( $formatted_queries as $query ) {
@@ -374,7 +374,7 @@ class QueryOutput {
 				%s
 			</a>',
 			esc_url( $button_link ),
-			esc_html__( 'Explain queries', 'debug-bar-elasticpress' )
+			esc_html__( 'Explain queries', 'debug-bar-wpprobe' )
 		);
 	}
 
@@ -402,7 +402,7 @@ class QueryOutput {
 				%s
 			</a>',
 			esc_url( $button_link ),
-			esc_html__( 'Reload and retrieve raw ES document', 'debug-bar-elasticpress' )
+			esc_html__( 'Reload and retrieve raw ES document', 'debug-bar-wpprobe' )
 		);
 	}
 }
