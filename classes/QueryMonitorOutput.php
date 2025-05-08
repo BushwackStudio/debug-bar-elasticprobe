@@ -3,10 +3,10 @@
  * QueryMonitorOutput class file.
  *
  * @since 3.1.0
- * @package DebugBarWPProbe
+ * @package DebugBarElasticProbe
  */
 
-namespace DebugBarWPProbe;
+namespace DebugBarElasticProbe;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -63,7 +63,7 @@ class QueryMonitorOutput extends \QM_Output_Html {
 	 * @return void
 	 */
 	protected function render_summary() {
-		$queries          = \WPProbe\Elasticsearch::factory()->get_query_log();
+		$queries          = \ElasticProbe\Elasticsearch::factory()->get_query_log();
 		$total_query_time = 0;
 
 		foreach ( $queries as $query ) {
@@ -75,20 +75,20 @@ class QueryMonitorOutput extends \QM_Output_Html {
 		<div class="qm-boxed">
 			<section>
 				<h3>
-					<?php esc_html_e( 'Total WPProbe Queries:', 'debug-bar-wpprobe' ); ?>
+					<?php esc_html_e( 'Total ElasticProbe Queries:', 'debug-bar-elasticprobe' ); ?>
 				</h3>
 				<p><?php echo count( $queries ); ?></p>
 			</section>
 			<section>
 				<h3>
-					<?php esc_html_e( 'Total Blocking WPProbe Query Time:', 'debug-bar-wpprobe' ); ?>
+					<?php esc_html_e( 'Total Blocking ElasticProbe Query Time:', 'debug-bar-elasticprobe' ); ?>
 				</h3>
 				<p>
 					<?php
 					echo esc_html(
 						sprintf(
 							/* translators: time spent */
-							__( '%d ms', 'debug-bar-wpprobe' ),
+							__( '%d ms', 'debug-bar-elasticprobe' ),
 							(int) ( $total_query_time * 1000 )
 						)
 					);

@@ -1,7 +1,7 @@
 {
-  "name": "debug-bar-wpprobe",
+  "name": "debug-bar-elasticprobe",
   "version": "0.1.0",
-  "description": "Extends the Debug Bar plugin for WPProbe queries.",
+  "description": "Extends the Debug Bar plugin for ElasticProbe queries.",
   "main": "index.js",
   "scripts": {
     "test": "phpunit",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BushwackStudio/debug-bar-wpprobe.git"
+    "url": "git+https://github.com/BushwackStudio/debug-bar-elasticprobe.git"
   },
   "author": "Bushwack Studio",
   "license": "GPL-2.0-or-later",
   "bugs": {
-    "url": "https://github.com/BushwackStudio/debug-bar-wpprobe/issues"
+    "url": "https://github.com/BushwackStudio/debug-bar-elasticprobe/issues"
   },
-  "homepage": "https://github.com/BushwackStudio/debug-bar-wpprobe#readme",
+  "homepage": "https://github.com/BushwackStudio/debug-bar-elasticprobe#readme",
   "eslintConfig": {
     "extends": "@10up/eslint-config/wordpress"
   },

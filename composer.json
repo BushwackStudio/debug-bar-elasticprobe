@@ -1,8 +1,8 @@
 {
-  "name": "bushwackstudio/debug-bar-wpprobe",
-  "description": "Extends the Debug Bar plugin for usage with WPProbe",
+  "name": "bushwackstudio/debug-bar-elasticprobe",
+  "description": "Extends the Debug Bar plugin for usage with ElasticProbe",
   "type": "wordpress-plugin",
-  "keywords": ["wordpress", "plugin", "elasticsearch", "wpprobe", "search", "debug", "debug bar"],
+  "keywords": ["wordpress", "plugin", "elasticsearch", "elasticprobe", "search", "debug", "debug bar"],
   "authors": [
     {
       "name": "Nima Shayanfar",
@@ -22,9 +22,9 @@
     "phpcompatibility/phpcompatibility-wp": "*"
   },
   "scripts": {
-    "lint": "phpcs debug-bar-wpprobe.php classes",
-    "lint-fix": "phpcbf debug-bar-wpprobe.php classes",
-    "check-php-compat": "phpcs debug-bar-wpprobe.php classes --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.0-"
+    "lint": "phpcs debug-bar-elasticprobe.php classes",
+    "lint-fix": "phpcbf debug-bar-elasticprobe.php classes",
+    "check-php-compat": "phpcs debug-bar-elasticprobe.php classes --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.0-"
   },
   "config": {
     "allow-plugins": {
