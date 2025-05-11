@@ -1,6 +1,6 @@
 {
   "name": "debug-bar-elasticprobe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Extends the Debug Bar plugin for ElasticProbe queries.",
   "main": "index.js",
   "scripts": {

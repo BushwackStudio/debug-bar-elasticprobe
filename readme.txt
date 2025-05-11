@@ -4,7 +4,7 @@ Tags: debug, debug bar, elasticprobe, elasticsearch
 Requires at least: 4.6
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,9 @@ Alternatively, go to ElasticProbe > Query Log and set it to record ElasticProbe 
 3. Install the plugin in WordPress.
 
 == Changelog ==
+
+= 0.2.0 - 2025-05-11 =
+* Changed plugin name to debug-bar-elasticprobe
 
 = 0.1.0 - 2025-04-29 =
 * Initial release
