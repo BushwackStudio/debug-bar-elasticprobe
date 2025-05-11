@@ -2,65 +2,65 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPProbe Debugging Add-On 0.1.0\n"
+"Project-Id-Version: ElasticProbe Debugging Add-On 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/debug-bar-wpprobe\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-27T08:02:35+00:00\n"
+"POT-Creation-Date: 2025-05-08T06:17:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
-"X-Domain: debug-bar-wpprobe\n"
+"X-Domain: debug-bar-elasticprobe\n"
 
 #. Plugin Name of the plugin
-#: debug-bar-wpprobe.php
-msgid "WPProbe Debugging Add-On"
+#: debug-bar-elasticprobe.php
+msgid "ElasticProbe Debugging Add-On"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: debug-bar-wpprobe.php
-msgid "https://wordpress.org/plugins/debug-bar-wpprobe"
+#: debug-bar-elasticprobe.php
+msgid "https://wordpress.org/plugins/debug-bar-elasticprobe"
 msgstr ""
 
 #. Description of the plugin
-#: debug-bar-wpprobe.php
-msgid "Extends the Query Monitor and Debug Bar plugins for WPProbe queries."
+#: debug-bar-elasticprobe.php
+msgid "Extends the Query Monitor and Debug Bar plugins for ElasticProbe queries."
 msgstr ""
 
 #. Author of the plugin
-#: debug-bar-wpprobe.php
+#: debug-bar-elasticprobe.php
 msgid "BushwackStudio"
 msgstr ""
 
 #. Author URI of the plugin
-#: debug-bar-wpprobe.php
+#: debug-bar-elasticprobe.php
 msgid "https://github.com/orgs/BushwackStudio"
 msgstr ""
 
 #. translators: %d: number of queries
 #: classes/CommonPanel.php:28
-msgid "WPProbe (%d)"
+msgid "ElasticProbe (%d)"
 msgstr ""
 
 #: classes/CommonPanel.php:33
-#: classes/EP_Debug_Bar_WPProbe.php:38
-msgid "WPProbe"
+#: classes/EP_Debug_Bar_ElasticProbe.php:38
+msgid "ElasticProbe"
 msgstr ""
 
 #: classes/CommonPanel.php:57
-msgid "WPProbe is currently indexing."
+msgid "ElasticProbe is currently indexing."
 msgstr ""
 
 #. translators: queries count.
-#: classes/EP_Debug_Bar_WPProbe.php:77
-msgid "<span>Total WPProbe Queries:</span> %d"
+#: classes/EP_Debug_Bar_ElasticProbe.php:77
+msgid "<span>Total ElasticProbe Queries:</span> %d"
 msgstr ""
 
 #. translators: blocking query time.
-#: classes/EP_Debug_Bar_WPProbe.php:85
-msgid "<span>Total Blocking WPProbe Query Time:</span> %d ms"
+#: classes/EP_Debug_Bar_ElasticProbe.php:85
+msgid "<span>Total Blocking ElasticProbe Query Time:</span> %d ms"
 msgstr ""
 
 #: classes/QueryFormatter.php:31
@@ -113,7 +113,7 @@ msgid "Query Log"
 msgstr ""
 
 #: classes/QueryLog.php:239
-msgid "WPProbe Query Log"
+msgid "ElasticProbe Query Log"
 msgstr ""
 
 #: classes/QueryLog.php:250
@@ -211,11 +211,11 @@ msgid "Search"
 msgstr ""
 
 #: classes/QueryMonitorOutput.php:78
-msgid "Total WPProbe Queries:"
+msgid "Total ElasticProbe Queries:"
 msgstr ""
 
 #: classes/QueryMonitorOutput.php:84
-msgid "Total Blocking WPProbe Query Time:"
+msgid "Total Blocking ElasticProbe Query Time:"
 msgstr ""
 
 #. translators: time spent
@@ -240,12 +240,12 @@ msgstr ""
 msgid "No queries to show"
 msgstr ""
 
-#. translators: Debug bar wpprobe error message
+#. translators: Debug bar elasticprobe error message
 #: classes/QueryOutput.php:144
 msgid "<strong>Error:</strong> %s"
 msgstr ""
 
-#. translators: Debug bar wpprobe recommended solution for the error
+#. translators: Debug bar elasticprobe recommended solution for the error
 #: classes/QueryOutput.php:152
 msgid "<strong>Recommended Solution:</strong> %s"
 msgstr ""
@@ -328,19 +328,19 @@ msgstr ""
 msgid "Reload and retrieve raw ES document"
 msgstr ""
 
-#: debug-bar-wpprobe.php:117
-msgid "WPProbe Version"
+#: debug-bar-elasticprobe.php:121
+msgid "ElasticProbe Version"
 msgstr ""
 
-#: debug-bar-wpprobe.php:129
+#: debug-bar-elasticprobe.php:133
 msgid "WPProbe.com Managed Platform"
 msgstr ""
 
-#: debug-bar-wpprobe.php:133
+#: debug-bar-elasticprobe.php:137
 msgid "Elasticsearch Version"
 msgstr ""
 
 #. translators: Min. EP version
-#: debug-bar-wpprobe.php:165
-msgid "WPProbe Debugging Add-On needs at least WPProbe %s to work properly."
+#: debug-bar-elasticprobe.php:169
+msgid "ElasticProbe Debugging Add-On needs at least ElasticProbe %s to work properly."
 msgstr ""

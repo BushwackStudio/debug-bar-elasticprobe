@@ -7,7 +7,7 @@
  *
  * phpcs:disable WordPress.PHP.DevelopmentFunctions
  *
- * @package DebugBarWPProbe
+ * @package DebugBarElasticProbe
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * New Debug Bar Panel class.
  */
-class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
+class EP_Debug_Bar_ElasticProbe extends \Debug_Bar_Panel {
 
 	/**
 	 * Panel menu title
@@ -27,7 +27,7 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 	/**
 	 * Common panel instance
 	 *
-	 * @var \DebugBarWPProbe\CommonPanel
+	 * @var \DebugBarElasticProbe\CommonPanel
 	 */
 	protected $common_panel;
 
@@ -35,9 +35,9 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 	 * Initial debug bar stuff
 	 */
 	public function init() {
-		$this->title( esc_html__( 'WPProbe', 'debug-bar-wpprobe' ) );
+		$this->title( esc_html__( 'ElasticProbe', 'debug-bar-elasticprobe' ) );
 
-		$this->common_panel = new \DebugBarWPProbe\CommonPanel();
+		$this->common_panel = new \DebugBarElasticProbe\CommonPanel();
 		$this->common_panel->enqueue_scripts_styles();
 	}
 
@@ -45,7 +45,7 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 	 * Enqueue scripts for front end and admin
 	 */
 	public function enqueue_scripts_styles() {
-		_deprecated_function( __METHOD__, '3.1.0', 'DebugBarWPProbe\EP_Panel::enqueue_scripts_styles()' );
+		_deprecated_function( __METHOD__, '3.1.0', 'DebugBarElasticProbe\EP_Panel::enqueue_scripts_styles()' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 	 * Show the contents of the panel
 	 */
 	public function render() {
-		$queries          = \WPProbe\Elasticsearch::factory()->get_query_log();
+		$queries          = \ElasticProbe\Elasticsearch::factory()->get_query_log();
 		$total_query_time = 0;
 
 		foreach ( $queries as $query ) {
@@ -74,7 +74,7 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 			<?php
 			echo wp_kses_post(
 				/* translators: queries count. */
-				sprintf( __( '<span>Total WPProbe Queries:</span> %d', 'debug-bar-wpprobe' ), count( $queries ) )
+				sprintf( __( '<span>Total ElasticProbe Queries:</span> %d', 'debug-bar-elasticprobe' ), count( $queries ) )
 			);
 			?>
 		</h2>
@@ -82,7 +82,7 @@ class EP_Debug_Bar_WPProbe extends \Debug_Bar_Panel {
 			<?php
 			echo wp_kses_post(
 				/* translators: blocking query time. */
-				sprintf( __( '<span>Total Blocking WPProbe Query Time:</span> %d ms', 'debug-bar-wpprobe' ), (int) ( $total_query_time * 1000 ) )
+				sprintf( __( '<span>Total Blocking ElasticProbe Query Time:</span> %d ms', 'debug-bar-elasticprobe' ), (int) ( $total_query_time * 1000 ) )
 			);
 			?>
 		</h2>

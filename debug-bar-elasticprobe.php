@@ -1,27 +1,27 @@
 <?php
 /**
- * Plugin Name:       WPProbe Debugging Add-On
- * Plugin URI:        https://wordpress.org/plugins/debug-bar-wpprobe
- * Description:       Extends the Query Monitor and Debug Bar plugins for WPProbe queries.
+ * Plugin Name:       ElasticProbe Debugging Add-On
+ * Plugin URI:        https://wordpress.org/plugins/debug-bar-elasticprobe
+ * Description:       Extends the Query Monitor and Debug Bar plugins for ElasticProbe queries.
  * Version:           0.1.0
- * Requires Plugins:  wpprobe
+ * Requires Plugins:  elasticprobe
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            BushwackStudio
  * Author URI:        https://github.com/orgs/BushwackStudio
  * License:           GPLv2
  * License URI:       https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- * Text Domain:       debug-bar-wpprobe
+ * Text Domain:       debug-bar-elasticprobe
  * Domain Path:       /lang
  *
  * This program derives work from 10up's ElasticPress Debugging Add-On.
  *
  * Copyright (C) 2025 10up
  *
- * @package DebugBarWPProbe
+ * @package DebugBarElasticProbe
  */
 
-namespace DebugBarWPProbe;
+namespace DebugBarElasticProbe;
 
 define( 'EP_DEBUG_VERSION', '0.1.0' );
 define( 'EP_DEBUG_URL', plugin_dir_url( __FILE__ ) );
@@ -30,7 +30,7 @@ define( 'EP_DEBUG_MIN_EP_VERSION', '0.1.0' );
 spl_autoload_register(
 	function ( $class_name ) {
 		// project-specific namespace prefix.
-		$prefix = 'DebugBarWPProbe\\';
+		$prefix = 'DebugBarElasticProbe\\';
 
 		// base directory for the namespace prefix.
 		$base_dir = __DIR__ . '/classes/';
@@ -93,7 +93,7 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\\setup' );
  * @since 3.1.1
  */
 function i18n() {
-	load_plugin_textdomain( 'debug-bar-wpprobe', false, basename( __DIR__ ) . '/lang' );
+	load_plugin_textdomain( 'debug-bar-elasticprobe', false, basename( __DIR__ ) . '/lang' );
 }
 
 /**
@@ -103,8 +103,8 @@ function i18n() {
  * @return array
  */
 function add_debug_bar_panel( $panels ) {
-	include_once __DIR__ . '/classes/EP_Debug_Bar_WPProbe.php';
-	$panels[] = new \EP_Debug_Bar_WPProbe();
+	include_once __DIR__ . '/classes/EP_Debug_Bar_ElasticProbe.php';
+	$panels[] = new \EP_Debug_Bar_ElasticProbe();
 	return $panels;
 }
 
@@ -118,23 +118,23 @@ function add_debug_bar_panel( $panels ) {
 function add_debug_bar_stati( $stati ) {
 	$stati[] = array(
 		'ep_version',
-		esc_html__( 'WPProbe Version', 'debug-bar-wpprobe' ),
+		esc_html__( 'ElasticProbe Version', 'debug-bar-elasticprobe' ),
 		defined( 'EP_VERSION' ) ? EP_VERSION : '',
 	);
 
 	$elasticsearch_version = '';
 	if (
-		class_exists( '\WPProbe\Elasticsearch' ) &&
-		method_exists( \WPProbe\Elasticsearch::factory(), 'get_elasticsearch_version' )
+		class_exists( '\ElasticProbe\Elasticsearch' ) &&
+		method_exists( \ElasticProbe\Elasticsearch::factory(), 'get_elasticsearch_version' )
 	) {
-		$elasticsearch_version = \WPProbe\Elasticsearch::factory()->get_elasticsearch_version();
+		$elasticsearch_version = \ElasticProbe\Elasticsearch::factory()->get_elasticsearch_version();
 	}
-	if ( function_exists( '\WPProbe\Utils\is_epio' ) && \WPProbe\Utils\is_epio() ) {
-		$elasticsearch_version = esc_html__( 'WPProbe.com Managed Platform', 'debug-bar-wpprobe' );
+	if ( function_exists( '\ElasticProbe\Utils\is_epio' ) && \ElasticProbe\Utils\is_epio() ) {
+		$elasticsearch_version = esc_html__( 'WPProbe.com Managed Platform', 'debug-bar-elasticprobe' );
 	}
 	$stati[] = array(
 		'es_version',
-		esc_html__( 'Elasticsearch Version', 'debug-bar-wpprobe' ),
+		esc_html__( 'Elasticsearch Version', 'debug-bar-elasticprobe' ),
 		$elasticsearch_version,
 	);
 	return $stati;
@@ -155,7 +155,7 @@ function add_explain_args( $formatted_args ) {
 
 
 /**
- * Render an admin notice about the absence of the minimum WPProbe plugin version.
+ * Render an admin notice about the absence of the minimum ElasticProbe plugin version.
  *
  * @since 3.0.0
  */
@@ -166,7 +166,7 @@ function admin_notice_min_ep_version() {
 			<?php
 			printf(
 				/* translators: Min. EP version */
-				esc_html__( 'WPProbe Debugging Add-On needs at least WPProbe %s to work properly.', 'debug-bar-wpprobe' ),
+				esc_html__( 'ElasticProbe Debugging Add-On needs at least ElasticProbe %s to work properly.', 'debug-bar-elasticprobe' ),
 				esc_html( EP_DEBUG_MIN_EP_VERSION )
 			);
 			?>
@@ -189,7 +189,7 @@ function is_indexable_singular() {
 	$id        = get_the_ID();
 	$post_type = get_post_type( $id );
 
-	$post_indexable       = \WPProbe\Indexables::factory()->get( 'post' );
+	$post_indexable       = \ElasticProbe\Indexables::factory()->get( 'post' );
 	$indexable_post_types = $post_indexable->get_indexable_post_types();
 
 	return in_array( $post_type, $indexable_post_types, true );
@@ -210,7 +210,7 @@ function retrieve_raw_document_from_es() {
 		return;
 	}
 
-	\WPProbe\Indexables::factory()->get( 'post' )->get( get_the_ID() );
+	\ElasticProbe\Indexables::factory()->get( 'post' )->get( get_the_ID() );
 }
 
 /**
@@ -221,10 +221,10 @@ function retrieve_raw_document_from_es() {
  * @return array
  */
 function register_qm_output( $output ) {
-	$collector = \QM_Collectors::get( 'wpprobe' );
+	$collector = \QM_Collectors::get( 'elasticprobe' );
 
 	if ( $collector ) {
-		$output['wpprobe'] = new QueryMonitorOutput( $collector );
+		$output['elasticprobe'] = new QueryMonitorOutput( $collector );
 	}
 
 	return $output;

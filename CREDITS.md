@@ -10,7 +10,7 @@ The following individuals are responsible for curating the list of issues, respo
 
 ## Contributors
 
-Thank you to all the people who have already contributed to this repository via bug reports, code, design, ideas, project management, translation, testing, etc. This plugin derives from 10UP's debug-bar-elasticpress. Bushwack is thankful for all of 10UP and their contributers' work.
+Thank you to all the people who have already contributed to this repository via bug reports, code, design, ideas, project management, translation, testing, etc. This plugin derives from 10UP's debug-bar-elasticpress. Bushwack Studio is thankful for all of 10UP and their contributers' work.
 
 [Nima Shayanfar (@nshayanfar)](https://github.com/nshayanfar).
 
