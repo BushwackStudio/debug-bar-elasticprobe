@@ -27,7 +27,7 @@ The `dev` branch is the development branch which means it contains the next vers
 ## Release instructions
 
 1. Branch: Starting from `dev`, cut a release branch named `release/X.Y.Z` for your changes.
-2. Version bump: Bump the version number in `debug-bar-elasticprobe.php`, `package.json`, `readme.txt`, and any other relevant files if it does not already reflect the version being released.  In `debug-bar-elasticprobe.php` update both the plugin "Version:" property and the plugin `EP_DEBUG_VERSION` constant.
+2. Version bump: Bump the version number in `debug-bar-elasticprobe.php`, `package.json`, `readme.txt`, and any other relevant files if it does not already reflect the version being released.  In `debug-bar-elasticprobe.php` update both the plugin "Version:" property and the plugin `EPROBE_DEBUG_VERSION` constant.
 3. Changelog: Add/update the changelog in `CHANGELOG.md` and `readme.txt`, ensuring to link the [X.Y.Z] release reference in the footer of `CHANGELOG.md` (e.g., https://github.com/BushwackStudio/debug-bar-elasticprobe/compare/X.Y.Z-1...X.Y.Z).
 4. Props: Update `CREDITS.md` file with any new contributors, confirm maintainers are accurate.
 5. Readme updates: Make any other readme changes as necessary.  `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content.  The two are slightly different.
@@ -48,7 +48,7 @@ The `dev` branch is the development branch which means it contains the next vers
 There may be cases where we have an urgent/important fix that ideally gets into a release quickly without any other changes (e.g., a "hotfix") so as to reduce (1) the amount or testing before being confident in the release and (2) to reduce the chance of unintended side effects from the extraneous non-urgent/important changes.  In cases where code has previously been merged into `dev` but that ideally is not part of a hotfix, the normal release instructions above will not suffice as they would release all code merged to `dev` alongside the intended urgent/important "hotfix" change(s).  In case of needing to release a "hotfix" the following are the recommended steps to take.
 
 1. Branch: Starting from `trunk`, cut a hotfix release branch named `hotfix/X.Y.Z` for your hotfix change(s).
-1. Version bump: Bump the version number in `debug-bar-elasticprobe.php`, `package.json`, `readme.txt`, and any other relevant files if it does not already reflect the version being released.  In `debug-bar-elasticprobe.php` update both the plugin "Version:" property and the plugin `EP_DEBUG_VERSION` constant.
+1. Version bump: Bump the version number in `debug-bar-elasticprobe.php`, `package.json`, `readme.txt`, and any other relevant files if it does not already reflect the version being released.  In `debug-bar-elasticprobe.php` update both the plugin "Version:" property and the plugin `EPROBE_DEBUG_VERSION` constant.
 1. Changelog: Add/update the changelog in `CHANGELOG.md` and `readme.txt`, ensuring to link the [X.Y.Z] release reference in the footer of `CHANGELOG.md` (e.g., https://github.com/BushwackStudio/debug-bar-elasticprobe/compare/X.Y.Z-1...X.Y.Z).
 1. Props: Update `CREDITS.md` file with any new contributors, confirm maintainers are accurate.
 1. Readme updates: Make any other readme changes as necessary.  `README.md` is geared toward GitHub and `readme.txt` contains WordPress.org-specific content.  The two are slightly different.

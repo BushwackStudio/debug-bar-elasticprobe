@@ -23,9 +23,9 @@
 
 namespace DebugBarElasticProbe;
 
-define( 'EP_DEBUG_VERSION', '0.2.0' );
-define( 'EP_DEBUG_URL', plugin_dir_url( __FILE__ ) );
-define( 'EP_DEBUG_MIN_EP_VERSION', '0.2.0' );
+define( 'EPROBE_DEBUG_VERSION', '0.2.0' );
+define( 'EPROBE_DEBUG_URL', plugin_dir_url( __FILE__ ) );
+define( 'EPROBE_DEBUG_MIN_EP_VERSION', '0.2.0' );
 
 spl_autoload_register(
 	function ( $class_name ) {
@@ -63,7 +63,7 @@ function setup() {
 		return __NAMESPACE__ . "\\$function_name";
 	};
 
-	if ( ! defined( 'EP_VERSION' ) || version_compare( EP_VERSION, EP_DEBUG_MIN_EP_VERSION, '<' ) ) {
+	if ( ! defined( 'EPROBE_VERSION' ) || version_compare( EPROBE_VERSION, EPROBE_DEBUG_MIN_EP_VERSION, '<' ) ) {
 		add_action( 'admin_notices', $n( 'admin_notice_min_ep_version' ) );
 		return;
 	}
@@ -78,7 +78,7 @@ function setup() {
 		add_filter( 'debug_bar_statuses', $n( 'add_debug_bar_stati' ) );
 	}
 
-	add_filter( 'ep_formatted_args', $n( 'add_explain_args' ), 10, 2 );
+	add_filter( 'eprobe_formatted_args', $n( 'add_explain_args' ), 10, 2 );
 
 	add_action( 'wp', $n( 'retrieve_raw_document_from_es' ) );
 	add_action( 'init', $n( 'i18n' ) );
@@ -119,7 +119,7 @@ function add_debug_bar_stati( $stati ) {
 	$stati[] = array(
 		'ep_version',
 		esc_html__( 'ElasticProbe Version', 'debug-bar-elasticprobe' ),
-		defined( 'EP_VERSION' ) ? EP_VERSION : '',
+		defined( 'EPROBE_VERSION' ) ? EPROBE_VERSION : '',
 	);
 
 	$elasticsearch_version = '';
@@ -167,7 +167,7 @@ function admin_notice_min_ep_version() {
 			printf(
 				/* translators: Min. EP version */
 				esc_html__( 'ElasticProbe Debugging Add-On needs at least ElasticProbe %s to work properly.', 'debug-bar-elasticprobe' ),
-				esc_html( EP_DEBUG_MIN_EP_VERSION )
+				esc_html( EPROBE_DEBUG_MIN_EP_VERSION )
 			);
 			?>
 		</p>

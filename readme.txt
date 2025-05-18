@@ -1,9 +1,9 @@
 === ElasticProbe Debugging Add-On ===
 Contributors: bushwackstudio
 Tags: debug, debug bar, elasticprobe, elasticsearch
-Requires at least: 4.6
+Requires at least: 6.0
 Tested up to: 6.8
-Requires PHP: 7.0
+Requires PHP: 7.4
 Stable tag: 0.2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

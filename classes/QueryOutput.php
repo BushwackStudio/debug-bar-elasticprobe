@@ -110,7 +110,7 @@ class QueryOutput {
 		$log['result'] = json_decode( $result, true );
 
 		if ( class_exists( '\ElasticProbe\StatusReport\FailedQueries' ) && class_exists( 'ElasticProbe\QueryLogger' ) ) {
-			$query_logger = apply_filters( 'ep_query_logger', new \ElasticProbe\QueryLogger() );
+			$query_logger = apply_filters( 'eprobe_query_logger', new \ElasticProbe\QueryLogger() );
 			if ( $query_logger ) {
 				$failed_queries = new \ElasticProbe\StatusReport\FailedQueries( $query_logger );
 				$error          = $failed_queries->analyze_log( $log );
@@ -328,11 +328,11 @@ class QueryOutput {
 		 * Filter the additional buttons.
 		 *
 		 * @since 3.1.0
-		 * @hook ep_debug_bar_additional_buttons
+		 * @hook eprobe_debug_bar_additional_buttons
 		 * @param array $buttons Buttons.
 		 * @return array
 		 */
-		apply_filters( 'ep_debug_bar_additional_buttons', $buttons );
+		apply_filters( 'eprobe_debug_bar_additional_buttons', $buttons );
 
 		$buttons = array_filter( $buttons );
 

@@ -24,13 +24,13 @@ class QueryLog {
 	 * @since 1.3
 	 */
 	public function setup() {
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK ) { // Must be network admin in multisite.
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK ) { // Must be network admin in multisite.
 			add_action( 'network_admin_menu', array( $this, 'action_admin_menu' ), 11 );
 		} else {
 			add_action( 'admin_menu', array( $this, 'action_admin_menu' ), 11 );
 		}
 
-		add_action( 'ep_remote_request', array( $this, 'log_query' ), 10, 2 );
+		add_action( 'eprobe_remote_request', array( $this, 'log_query' ), 10, 2 );
 		add_action( 'admin_init', array( $this, 'action_admin_init' ) );
 		add_action( 'admin_init', array( $this, 'maybe_clear_log' ) );
 		add_action( 'init', array( $this, 'maybe_disable' ) );
@@ -41,14 +41,14 @@ class QueryLog {
 		 *
 		 * @see json_encode_query_log()
 		 */
-		add_filter( 'pre_update_site_option_ep_query_log', array( $this, 'json_encode_query_log' ) );
-		add_filter( 'pre_update_option_ep_query_log', array( $this, 'json_encode_query_log' ) );
-		add_filter( 'option_ep_query_log', array( $this, 'json_decode_query_log' ) );
-		add_filter( 'site_option_ep_query_log', array( $this, 'json_decode_query_log' ) );
+		add_filter( 'pre_update_site_option_eprobe_query_log', array( $this, 'json_encode_query_log' ) );
+		add_filter( 'pre_update_option_eprobe_query_log', array( $this, 'json_encode_query_log' ) );
+		add_filter( 'option_eprobe_query_log', array( $this, 'json_decode_query_log' ) );
+		add_filter( 'site_option_eprobe_query_log', array( $this, 'json_decode_query_log' ) );
 
-		add_filter( 'ep_query_request_args', [ $this, 'maybe_add_request_query_type' ], 10, 7 );
-		add_filter( 'ep_pre_request_args', [ $this, 'maybe_add_request_type' ], 10, 4 );
-		add_filter( 'ep_pre_request_args', [ $this, 'maybe_add_request_context' ] );
+		add_filter( 'eprobe_query_request_args', [ $this, 'maybe_add_request_query_type' ], 10, 7 );
+		add_filter( 'eprobe_pre_request_args', [ $this, 'maybe_add_request_type' ], 10, 4 );
+		add_filter( 'eprobe_pre_request_args', [ $this, 'maybe_add_request_context' ] );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class QueryLog {
 	 */
 	public function action_admin_init() {
 		// Save options for multisite
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK && isset( $_POST['ep_enable_logging'] ) ) {
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK && isset( $_POST['ep_enable_logging'] ) ) {
 			check_admin_referer( 'ep-debug-options' );
 
 			update_site_option( 'ep_enable_logging', $this->sanitize_enable_logging( $_POST['ep_enable_logging'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -228,7 +228,7 @@ class QueryLog {
 
 		$action = 'options.php';
 
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK ) {
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK ) {
 			$action = '';
 		}
 
@@ -506,7 +506,7 @@ class QueryLog {
 		$search_term = $query_args['s'] ?? '';
 		if ( '' !== $search_term ) {
 			$type = 'Search';
-			if ( apply_filters( 'ep_autosuggest_query_placeholder', 'ep_autosuggest_placeholder' ) === $search_term ) {
+			if ( apply_filters( 'eprobe_autosuggest_query_placeholder', 'ep_autosuggest_placeholder' ) === $search_term ) {
 				return esc_html__( 'Autosuggest template', 'debug-bar-elasticprobe' );
 			}
 
@@ -564,7 +564,7 @@ class QueryLog {
 		 * @since 2.1.0 Added `bulk_index`
 		 */
 		$allowed_log_types = apply_filters(
-			'ep_debug_bar_allowed_log_types',
+			'eprobe_debug_bar_allowed_log_types',
 			array(
 				'put_mapping'          => array( $this, 'is_query_error' ),
 				'delete_network_alias' => array( $this, 'is_query_error' ),
@@ -598,11 +598,11 @@ class QueryLog {
 		 * Filter the log size limit
 		 *
 		 * @since  3.1.0
-		 * @hook ep_debug_bar_log_size_limit
+		 * @hook eprobe_debug_bar_log_size_limit
 		 * @param  {int} $number Log size limit
 		 * @return {int} New limit
 		 */
-		return apply_filters( 'ep_debug_bar_log_size_limit', MB_IN_BYTES );
+		return apply_filters( 'eprobe_debug_bar_log_size_limit', MB_IN_BYTES );
 	}
 
 	/**
