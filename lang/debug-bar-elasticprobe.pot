@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: ElasticProbe Debugging Add-On 0.2.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/debug-bar-wpprobe\n"
+"Project-Id-Version: ElasticProbe Debugging Add-On 0.3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/debug-bar-elasticprobe\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-11T08:48:05+00:00\n"
+"POT-Creation-Date: 2025-12-16T07:26:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: debug-bar-elasticprobe\n"
@@ -333,7 +333,7 @@ msgid "ElasticProbe Version"
 msgstr ""
 
 #: debug-bar-elasticprobe.php:133
-msgid "WPProbe.com Managed Platform"
+msgid "ElasticProbe.com Managed Platform"
 msgstr ""
 
 #: debug-bar-elasticprobe.php:137

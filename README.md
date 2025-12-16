@@ -7,7 +7,7 @@
 
 ## Requirements
 
-* [ElasticProbe](https://wordpress.org/plugins/elasticprobe/) 4.4.0+
+* [ElasticProbe](https://wordpress.org/plugins/elasticprobe/) 1.4.0+
 * PHP 7.0+
 * Optional: [Debug Bar](https://wordpress.org/plugins/debug-bar/) 1.0+ or [Query Monitor](https://wordpress.org/plugins/query-monitor/)
 
@@ -23,7 +23,7 @@ If you identify any errors or have an idea for improving the plugin, please [ope
 
 ## Support Level
 
-**Active:** 10up is actively working on this, and we expect to continue work for the foreseeable future including keeping tested up to the most recent version of WordPress. Bug reports, feature requests, questions, and pull requests are welcome.
+**Active:** Bushwack Studio is actively working on this, and we expect to continue work for the foreseeable future including keeping tested up to the most recent version of WordPress. Bug reports, feature requests, questions, and pull requests are welcome.
 
 ## Changelog
 

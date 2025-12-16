@@ -24,13 +24,13 @@ class QueryLog {
 	 * @since 1.3
 	 */
 	public function setup() {
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK ) { // Must be network admin in multisite.
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK ) { // Must be network admin in multisite.
 			add_action( 'network_admin_menu', array( $this, 'action_admin_menu' ), 11 );
 		} else {
 			add_action( 'admin_menu', array( $this, 'action_admin_menu' ), 11 );
 		}
 
-		add_action( 'ep_remote_request', array( $this, 'log_query' ), 10, 2 );
+		add_action( 'eprobe_remote_request', array( $this, 'log_query' ), 10, 2 );
 		add_action( 'admin_init', array( $this, 'action_admin_init' ) );
 		add_action( 'admin_init', array( $this, 'maybe_clear_log' ) );
 		add_action( 'init', array( $this, 'maybe_disable' ) );
@@ -41,14 +41,14 @@ class QueryLog {
 		 *
 		 * @see json_encode_query_log()
 		 */
-		add_filter( 'pre_update_site_option_ep_query_log', array( $this, 'json_encode_query_log' ) );
-		add_filter( 'pre_update_option_ep_query_log', array( $this, 'json_encode_query_log' ) );
-		add_filter( 'option_ep_query_log', array( $this, 'json_decode_query_log' ) );
-		add_filter( 'site_option_ep_query_log', array( $this, 'json_decode_query_log' ) );
+		add_filter( 'pre_update_site_option_eprobe_query_log', array( $this, 'json_encode_query_log' ) );
+		add_filter( 'pre_update_option_eprobe_query_log', array( $this, 'json_encode_query_log' ) );
+		add_filter( 'option_eprobe_query_log', array( $this, 'json_decode_query_log' ) );
+		add_filter( 'site_option_eprobe_query_log', array( $this, 'json_decode_query_log' ) );
 
-		add_filter( 'ep_query_request_args', [ $this, 'maybe_add_request_query_type' ], 10, 7 );
-		add_filter( 'ep_pre_request_args', [ $this, 'maybe_add_request_type' ], 10, 4 );
-		add_filter( 'ep_pre_request_args', [ $this, 'maybe_add_request_context' ] );
+		add_filter( 'eprobe_query_request_args', [ $this, 'maybe_add_request_query_type' ], 10, 7 );
+		add_filter( 'eprobe_pre_request_args', [ $this, 'maybe_add_request_type' ], 10, 4 );
+		add_filter( 'eprobe_pre_request_args', [ $this, 'maybe_add_request_context' ] );
 	}
 
 	/**
@@ -58,33 +58,33 @@ class QueryLog {
 	 */
 	public function action_admin_init() {
 		// Save options for multisite
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK && isset( $_POST['ep_enable_logging'] ) ) {
-			check_admin_referer( 'ep-debug-options' );
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK && isset( $_POST['eprobe_enable_logging'] ) ) {
+			check_admin_referer( 'eprobe-debug-options' );
 
-			update_site_option( 'ep_enable_logging', $this->sanitize_enable_logging( $_POST['ep_enable_logging'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-			if ( isset( $_POST['ep_query_log_by_status'] ) ) {
-				update_site_option( 'ep_query_log_by_status', sanitize_text_field( wp_unslash( $_POST['ep_query_log_by_status'] ) ) );
+			update_site_option( 'eprobe_enable_logging', $this->sanitize_enable_logging( $_POST['eprobe_enable_logging'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			if ( isset( $_POST['eprobe_query_log_by_status'] ) ) {
+				update_site_option( 'eprobe_query_log_by_status', sanitize_text_field( wp_unslash( $_POST['eprobe_query_log_by_status'] ) ) );
 			}
-			if ( ! empty( $_POST['ep_query_log_by_context'] ) ) {
-				$ep_query_log_by_context = array_map( 'sanitize_text_field', wp_unslash( $_POST['ep_query_log_by_context'] ) );
-				update_site_option( 'ep_query_log_by_context', $ep_query_log_by_context );
+			if ( ! empty( $_POST['eprobe_query_log_by_context'] ) ) {
+				$eprobe_query_log_by_context = array_map( 'sanitize_text_field', wp_unslash( $_POST['eprobe_query_log_by_context'] ) );
+				update_site_option( 'eprobe_query_log_by_context', $eprobe_query_log_by_context );
 			} else {
-				update_site_option( 'ep_query_log_by_context', [] );
+				update_site_option( 'eprobe_query_log_by_context', [] );
 			}
 		} else {
 			register_setting(
-				'ep-debug',
-				'ep_enable_logging',
+				'eprobe-debug',
+				'eprobe_enable_logging',
 				[ 'sanitize_callback' => [ $this, 'sanitize_enable_logging' ] ]
 			);
 			register_setting(
-				'ep-debug',
-				'ep_query_log_by_status',
+				'eprobe-debug',
+				'eprobe_query_log_by_status',
 				[ 'sanitize_callback' => 'sanitize_text_field' ]
 			);
 			register_setting(
-				'ep-debug',
-				'ep_query_log_by_context',
+				'eprobe-debug',
+				'eprobe_query_log_by_context',
 				[
 					'sanitize_callback' => function ( $value ) {
 						return ! empty( $value ) ? array_map( 'sanitize_text_field', $value ) : [];
@@ -107,7 +107,7 @@ class QueryLog {
 			return;
 		}
 
-		Utils\delete_option( 'ep_query_log' );
+		Utils\delete_option( 'eprobe_query_log' );
 
 		wp_safe_redirect( remove_query_arg( 'ep_clear_query_log' ) );
 		exit();
@@ -196,7 +196,7 @@ class QueryLog {
 			return;
 		}
 
-		$log = Utils\get_option( 'ep_query_log', [] );
+		$log = Utils\get_option( 'eprobe_query_log', [] );
 
 		$log[] = array(
 			'query' => $query,
@@ -208,7 +208,7 @@ class QueryLog {
 			return;
 		}
 
-		Utils\update_option( 'ep_query_log', $log );
+		Utils\update_option( 'eprobe_query_log', $log );
 	}
 
 	/**
@@ -217,10 +217,10 @@ class QueryLog {
 	 * @since 1.3
 	 */
 	public function screen_options() {
-		$log        = Utils\get_option( 'ep_query_log', array() );
-		$enabled    = Utils\get_option( 'ep_enable_logging' );
-		$by_status  = Utils\get_option( 'ep_query_log_by_status', 'failed' );
-		$by_context = Utils\get_option( 'ep_query_log_by_context', [] );
+		$log        = Utils\get_option( 'eprobe_query_log', array() );
+		$enabled    = Utils\get_option( 'eprobe_enable_logging' );
+		$by_status  = Utils\get_option( 'eprobe_query_log_by_status', 'failed' );
+		$by_context = Utils\get_option( 'eprobe_query_log_by_context', [] );
 
 		if ( is_array( $log ) ) {
 			$log = array_reverse( $log );
@@ -228,7 +228,7 @@ class QueryLog {
 
 		$action = 'options.php';
 
-		if ( defined( 'EP_IS_NETWORK' ) && EP_IS_NETWORK ) {
+		if ( defined( 'EPROBE_IS_NETWORK' ) && EPROBE_IS_NETWORK ) {
 			$action = '';
 		}
 
@@ -239,19 +239,19 @@ class QueryLog {
 			<h2><?php esc_html_e( 'ElasticProbe Query Log', 'debug-bar-elasticprobe' ); ?></h2>
 
 			<form action="<?php echo esc_url( $action ); ?>" method="post">
-				<?php settings_fields( 'ep-debug' ); ?>
+				<?php settings_fields( 'eprobe-debug' ); ?>
 				<?php settings_errors(); ?>
 
 				<table class="form-table">
 					<tbody>
 						<tr>
 							<th scope="row">
-								<label for="ep_enable_logging">
+								<label for="eprobe_enable_logging">
 									<?php esc_html_e( 'Enable or disable query logging:', 'debug-bar-elasticprobe' ); ?>
 								</label>
 							</th>
 							<td>
-								<select name="ep_enable_logging" id="ep_enable_logging">
+								<select name="eprobe_enable_logging" id="eprobe_enable_logging">
 									<option value="0"><?php esc_html_e( 'Disable', 'debug-bar-elasticprobe' ); ?></option>
 									<option <?php selected( $is_time_limit ); ?> value="time_limit"><?php esc_html_e( 'Enable for 5 minutes', 'debug-bar-elasticprobe' ); ?></option>
 									<option <?php selected( '-1', $enabled ); ?> value="-1"><?php esc_html_e( 'Keep enabled', 'debug-bar-elasticprobe' ); ?></option>
@@ -274,9 +274,9 @@ class QueryLog {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="ep_query_log_by_status"><?php esc_html_e( 'Log by status:', 'debug-bar-elasticprobe' ); ?></label></th>
+							<th scope="row"><label for="eprobe_query_log_by_status"><?php esc_html_e( 'Log by status:', 'debug-bar-elasticprobe' ); ?></label></th>
 							<td>
-								<select name="ep_query_log_by_status" id="ep_query_log_by_status">
+								<select name="eprobe_query_log_by_status" id="eprobe_query_log_by_status">
 									<option <?php selected( 'failed', $by_status ); ?> value="failed"><?php esc_html_e( 'Only failed queries', 'debug-bar-elasticprobe' ); ?></option>
 									<option <?php selected( 'all', $by_status ); ?> value="all"><?php esc_html_e( 'All queries', 'debug-bar-elasticprobe' ); ?></option>
 								</select>
@@ -286,19 +286,19 @@ class QueryLog {
 							<th scope="row"><?php esc_html_e( 'Log by context:', 'debug-bar-elasticprobe' ); ?></th>
 							<td>
 								<label>
-									<input type="checkbox" name="ep_query_log_by_context[]" value="public" <?php checked( empty( $by_context ) || in_array( 'public', $by_context, true ) ); ?>>
+									<input type="checkbox" name="eprobe_query_log_by_context[]" value="public" <?php checked( empty( $by_context ) || in_array( 'public', $by_context, true ) ); ?>>
 									<?php esc_html_e( 'Public', 'debug-bar-elasticprobe' ); ?>
 								</label><br>
 								<label>
-									<input type="checkbox" name="ep_query_log_by_context[]" value="admin" <?php checked( empty( $by_context ) || in_array( 'admin', $by_context, true ) ); ?>>
+									<input type="checkbox" name="eprobe_query_log_by_context[]" value="admin" <?php checked( empty( $by_context ) || in_array( 'admin', $by_context, true ) ); ?>>
 									<?php esc_html_e( 'Admin', 'debug-bar-elasticprobe' ); ?>
 								</label><br>
 								<label>
-									<input type="checkbox" name="ep_query_log_by_context[]" value="ajax" <?php checked( empty( $by_context ) || in_array( 'ajax', $by_context, true ) ); ?>>
+									<input type="checkbox" name="eprobe_query_log_by_context[]" value="ajax" <?php checked( empty( $by_context ) || in_array( 'ajax', $by_context, true ) ); ?>>
 									<?php esc_html_e( 'AJAX', 'debug-bar-elasticprobe' ); ?>
 								</label><br>
 								<label>
-									<input type="checkbox" name="ep_query_log_by_context[]" value="rest" <?php checked( empty( $by_context ) || in_array( 'rest', $by_context, true ) ); ?>>
+									<input type="checkbox" name="eprobe_query_log_by_context[]" value="rest" <?php checked( empty( $by_context ) || in_array( 'rest', $by_context, true ) ); ?>>
 									<?php esc_html_e( 'REST API', 'debug-bar-elasticprobe' ); ?>
 								</label>
 							</td>
@@ -365,7 +365,7 @@ class QueryLog {
 	 *
 	 * This is necessary because otherwise, WP will run it thought `maybe_unserialize()` and break it.
 	 *
-	 * @param mixed $value The ep_query_log option value.
+	 * @param mixed $value The eprobe_query_log option value.
 	 * @return string
 	 */
 	public function json_encode_query_log( $value ) {
@@ -474,7 +474,7 @@ class QueryLog {
 	public function admin_enqueue_scripts() {
 		$current_screen = get_current_screen();
 
-		if ( ! isset( $current_screen->id ) || 'elasticpress_page_ep-query-log' !== $current_screen->id ) {
+		if ( ! isset( $current_screen->id ) || 'elasticprobe_page_ep-query-log' !== $current_screen->id ) {
 			return;
 		}
 
@@ -506,7 +506,7 @@ class QueryLog {
 		$search_term = $query_args['s'] ?? '';
 		if ( '' !== $search_term ) {
 			$type = 'Search';
-			if ( apply_filters( 'ep_autosuggest_query_placeholder', 'ep_autosuggest_placeholder' ) === $search_term ) {
+			if ( apply_filters( 'eprobe_autosuggest_query_placeholder', 'ep_autosuggest_placeholder' ) === $search_term ) {
 				return esc_html__( 'Autosuggest template', 'debug-bar-elasticprobe' );
 			}
 
@@ -523,7 +523,7 @@ class QueryLog {
 	 * @return boolean
 	 */
 	protected function is_enabled(): bool {
-		$enabled = Utils\get_option( 'ep_enable_logging' );
+		$enabled = Utils\get_option( 'eprobe_enable_logging' );
 
 		return ! empty( $enabled );
 	}
@@ -535,7 +535,7 @@ class QueryLog {
 	 * @return boolean
 	 */
 	protected function should_log_by_context() {
-		$by_context = Utils\get_option( 'ep_query_log_by_context', [] );
+		$by_context = Utils\get_option( 'eprobe_query_log_by_context', [] );
 
 		return empty( $by_context ) || in_array( $this->get_current_context(), $by_context, true );
 	}
@@ -549,7 +549,7 @@ class QueryLog {
 	 * @return boolean
 	 */
 	protected function should_log_by_status( array $query, $type ): bool {
-		$by_status = Utils\get_option( 'ep_query_log_by_status', 'failed' );
+		$by_status = Utils\get_option( 'eprobe_query_log_by_status', 'failed' );
 
 		if ( 'all' === $by_status ) {
 			return true;
@@ -564,7 +564,7 @@ class QueryLog {
 		 * @since 2.1.0 Added `bulk_index`
 		 */
 		$allowed_log_types = apply_filters(
-			'ep_debug_bar_allowed_log_types',
+			'eprobe_debug_bar_allowed_log_types',
 			array(
 				'put_mapping'          => array( $this, 'is_query_error' ),
 				'delete_network_alias' => array( $this, 'is_query_error' ),
@@ -598,11 +598,11 @@ class QueryLog {
 		 * Filter the log size limit
 		 *
 		 * @since  3.1.0
-		 * @hook ep_debug_bar_log_size_limit
+		 * @hook eprobe_debug_bar_log_size_limit
 		 * @param  {int} $number Log size limit
 		 * @return {int} New limit
 		 */
-		return apply_filters( 'ep_debug_bar_log_size_limit', MB_IN_BYTES );
+		return apply_filters( 'eprobe_debug_bar_log_size_limit', MB_IN_BYTES );
 	}
 
 	/**
@@ -611,18 +611,18 @@ class QueryLog {
 	 * @since 3.1.0
 	 */
 	public function maybe_disable() {
-		$enabled = Utils\get_option( 'ep_enable_logging' );
+		$enabled = Utils\get_option( 'eprobe_enable_logging' );
 
 		$is_time_limit = ! empty( $enabled ) && ! in_array( $enabled, [ '0', 0, '-1' ], true );
 		if ( ! $is_time_limit || $enabled > wp_date( 'U' ) ) {
 			return;
 		}
 
-		Utils\update_option( 'ep_enable_logging', 0 );
+		Utils\update_option( 'eprobe_enable_logging', 0 );
 	}
 
 	/**
-	 * Sanitize the ep_enable_logging option, conditionally setting it as a time limit
+	 * Sanitize the eprobe_enable_logging option, conditionally setting it as a time limit
 	 *
 	 * @since 3.1.0
 	 * @param mixed $value Value sent

@@ -41,8 +41,8 @@ class CommonPanel {
 			return;
 		}
 
-		wp_enqueue_script( 'debug-bar-elasticpress', EP_DEBUG_URL . 'assets/js/main.js', array( 'wp-dom-ready', 'clipboard' ), EP_DEBUG_VERSION, true );
-		wp_enqueue_style( 'debug-bar-elasticpress', EP_DEBUG_URL . 'assets/css/main.css', array(), EP_DEBUG_VERSION );
+		wp_enqueue_script( 'debug-bar-elasticprobe', EPROBE_DEBUG_URL . 'assets/js/main.js', array( 'wp-dom-ready', 'clipboard' ), EPROBE_DEBUG_VERSION, true );
+		wp_enqueue_style( 'debug-bar-elasticprobe', EPROBE_DEBUG_URL . 'assets/css/main.css', array(), EPROBE_DEBUG_VERSION );
 	}
 
 	/**
