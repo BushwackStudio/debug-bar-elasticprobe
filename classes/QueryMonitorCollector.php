@@ -19,5 +19,5 @@ class QueryMonitorCollector extends \QM_Collector {
 	 *
 	 * @var string
 	 */
-	public $id = 'elasticpress';
+	public $id = 'elasticprobe';
 }

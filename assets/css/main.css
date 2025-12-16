@@ -80,8 +80,8 @@
  */
 #debug-menu-target-EP_Debug_Bar_ElasticProbe .button,
 #debug-menu-target-EP_Debug_Bar_ElasticProbe a.button,
-#qm-elasticpress .button,
-#qm-elasticpress a.button {
+#qm-elasticprobe .button,
+#qm-elasticprobe a.button {
 	background: #f6f7f7 !important;
 	border: 1px solid #2271b1 !important;
 	border-radius: 3px !important;
@@ -99,7 +99,7 @@
 }
 
 #debug-menu-target-EP_Debug_Bar_ElasticProbe .button:hover,
-#query-monitor-main #qm-elasticpress .button:hover {
+#query-monitor-main #qm-elasticprobe .button:hover {
 	background: #f0f0f1;
 	border-color: #0a4b78;
 	color: #0a4b78 !important;
@@ -107,14 +107,14 @@
 }
 
 #debug-menu-target-EP_Debug_Bar_ElasticProbe .button:active,
-#query-monitor-main #qm-elasticpress .button:hover {
+#query-monitor-main #qm-elasticprobe .button:hover {
 	background: #f6f7f7 !important;
 	border-color: #8c8f94 !important;
 	box-shadow: none;
 }
 
 #debug-menu-target-EP_Debug_Bar_ElasticProbe .button:focus,
-#query-monitor-main #qm-elasticpress .button:focus {
+#query-monitor-main #qm-elasticprobe .button:focus {
 	outline: none;
 }
 
@@ -122,7 +122,7 @@
 #debug-menu-target-EP_Debug_Bar_ElasticProbe .button-primary,
 #debug-menu-target-EP_Debug_Bar_ElasticProbe a.button-primary,
 #debug-menu-target-EP_Debug_Bar_ElasticProbe button.button-primary,
-#query-monitor-main #qm-elasticpress .button-primary {
+#query-monitor-main #qm-elasticprobe .button-primary {
 	background: #007cba !important;
 	border: 1px solid #007cba !important;
 	color: #fff !important;
@@ -130,21 +130,21 @@
 
 #debug-menu-target-EP_Debug_Bar_ElasticProbe a.button-primary:hover,
 #debug-menu-target-EP_Debug_Bar_ElasticProbe a.button-primary:focus,
-#query-monitor-main #qm-elasticpress a.button-primary:hover,
-#query-monitor-main #qm-elasticpress a.button-primary:focus {
+#query-monitor-main #qm-elasticprobe a.button-primary:hover,
+#query-monitor-main #qm-elasticprobe a.button-primary:focus {
 	background: #007cba !important;
 	color: #fff !important;
 	text-decoration: none !important;
 }
 
-#query-monitor-main #qm-elasticpress h3,
-#query-monitor-main #qm-elasticpress p {
+#query-monitor-main #qm-elasticprobe h3,
+#query-monitor-main #qm-elasticprobe p {
 	margin: 0 !important;
 	padding: 0 !important;
 	text-align: center !important;
 }
 
-#query-monitor-main #qm-elasticpress li {
+#query-monitor-main #qm-elasticprobe li {
 	border-top: 1px solid var(--qm-panel-separator) !important;
 	line-height: 20px !important;
 	padding: 20px 0 !important;

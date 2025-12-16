@@ -130,7 +130,7 @@ function add_debug_bar_stati( $stati ) {
 		$elasticsearch_version = \ElasticProbe\Elasticsearch::factory()->get_elasticsearch_version();
 	}
 	if ( function_exists( '\ElasticProbe\Utils\is_epio' ) && \ElasticProbe\Utils\is_epio() ) {
-		$elasticsearch_version = esc_html__( 'WPProbe.com Managed Platform', 'debug-bar-elasticprobe' );
+		$elasticsearch_version = esc_html__( 'ElasticProbe.com Managed Platform', 'debug-bar-elasticprobe' );
 	}
 	$stati[] = array(
 		'es_version',
