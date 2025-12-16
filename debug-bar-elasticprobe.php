@@ -3,7 +3,7 @@
  * Plugin Name:       ElasticProbe Debugging Add-On
  * Plugin URI:        https://wordpress.org/plugins/debug-bar-elasticprobe
  * Description:       Extends the Query Monitor and Debug Bar plugins for ElasticProbe queries.
- * Version:           0.2.0
+ * Version:           0.3.0
  * Requires Plugins:  elasticprobe
  * Requires at least: 6.0
  * Requires PHP:      7.4
@@ -23,9 +23,9 @@
 
 namespace DebugBarElasticProbe;
 
-define( 'EPROBE_DEBUG_VERSION', '0.2.0' );
+define( 'EPROBE_DEBUG_VERSION', '0.3.0' );
 define( 'EPROBE_DEBUG_URL', plugin_dir_url( __FILE__ ) );
-define( 'EPROBE_DEBUG_MIN_EP_VERSION', '0.2.0' );
+define( 'EPROBE_DEBUG_MIN_EP_VERSION', '1.4.0' );
 
 spl_autoload_register(
 	function ( $class_name ) {
